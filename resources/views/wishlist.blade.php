@@ -74,8 +74,8 @@
 
     @else
         <div class="container">
-        <h3>You have no items in your Wishlist</h3>
-        <a href="/shop" class="btn btn-primary btn-lg">Continue Shopping</a>
+        <h3>Daftar Keinginan Kosong</h3>
+        <a href="/shop" class="btn btn-primary btn-lg">Lanjut Belanja</a>
         </div>
     @endif
 

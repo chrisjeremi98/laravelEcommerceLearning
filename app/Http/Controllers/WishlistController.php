@@ -49,13 +49,13 @@ class WishlistController extends Controller
     public function destroy($id)
     {
         Cart::instance('wishlist')->remove($id);
-        return redirect('wishlist')->withSuccessMessage('Item has been removed!');
+        return redirect('wishlist')->withSuccessMessage('Barang Berhasil Dihapus');
     }
 
     public function emptyWishlist()
     {
         Cart::instance('wishlist')->destroy();
-        return redirect('wishlist')->withSuccessMessage('Your wishlist has been cleared!');
+        return redirect('wishlist')->withSuccessMessage('Daftar Keinginan berhasil dikosongkan');
     }
 
 

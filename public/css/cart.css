@@ -1,0 +1,14 @@
+#jumlah {
+    display: block;
+    padding: 10px;
+ /* SIMPLY SET THIS PROPERTY AS MUCH AS YOU WANT. This changes the space below box1 */
+    text-align: justify;
+}
+
+#subtotal {
+    display: block;
+    padding: 10px;
+    text-align: justify;
+    margin-bottom: 10px;
+ /* OR ADD THIS LINE AND SET YOUR PROPER SPACE as the space above box2 */
+}

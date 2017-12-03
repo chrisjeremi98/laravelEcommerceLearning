@@ -90,14 +90,15 @@
                         <li></li>
 
                     @else
-                        <li class="#"><a href="{{url('/wishlist')}}">Wishlist ({{ Cart::instance('wishlist')->count(false) }})</a></li>
-                        <li class="#"><a href="{{url('/cart')}}">Cart ({{ Cart::instance('default')->count(false) }})</a></li>
+                        <li class="#"><a href="{{url('/wishlist')}}">Daftar Keinginan ({{ Cart::instance('wishlist')->count(false) }})</a></li>
+                        <li class="#"><a href="{{url('/cart')}}">Keranjang ({{ Cart::instance('default')->count(false) }})</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{url('/transaksi_user')}}">Transaksi</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

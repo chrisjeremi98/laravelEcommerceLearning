@@ -31,8 +31,8 @@ class ProductController extends Controller
         $produk->image=$filename;
         $produk->save();
 
-        return redirect()->to('/');
-
+        $products=Product::all();
+        return view('product_details')->with('products',$products);
     }
 
     public function index()
@@ -44,7 +44,7 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        //
+        //pro
         $product=Product::where('slug',$slug)->firstOrFail();
         $interested=Product::where('slug','!=',$slug)->get()->random(4);
 
@@ -78,6 +78,19 @@ class ProductController extends Controller
         $products=Product::all()->where('category_id',4);
         return view('shop')->with('products',$products);
 
+    }
+
+    public function indexProductAdmin(){
+        $products=Product::all();
+        return view('product_details')->with('products',$products);
+    }
+
+    public function destroy($id)
+    {
+        $product=Product::find($id);
+        $product->delete();
+        $products=Product::all();
+        return view('product_details')->with('products',$products);
     }
 
 }

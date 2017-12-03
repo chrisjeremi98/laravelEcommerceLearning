@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
     /**
@@ -28,4 +29,22 @@ class User extends Authenticatable
     public function transactions(){
         return $this->hasMany('App\Transaction');
     }
+
+    public function roles(){
+
+        return $this->belongsToMany('App\Role');
+    }
+
+
+
+    public function isAdmin()
+    {
+        if($this->role_id==1){
+           return false;
+        }
+        elseif ($this->role_id==2){
+            return true;
+        }
+    }
+
 }

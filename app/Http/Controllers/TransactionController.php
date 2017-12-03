@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Transaction;
 use \Cart as Cart;
-use \Auth;
+use \Auth as Auth;
+use App\User;
 
 class TransactionController extends Controller
 {
@@ -19,6 +20,13 @@ class TransactionController extends Controller
     public function index()
     {
         //
+
+//        $userId=Auth::id();
+//        $transactions=Transaction::where('user_id',$userId)->get();
+//        return view('transactions')->with('transactions',$transactions);
+        $transaction=Transaction::all();
+        return view('transactions')->with('transaction',$transaction);
+
     }
 
     /**
@@ -46,6 +54,8 @@ class TransactionController extends Controller
         $transaction->product_id=$request->product_id;
         $transaction->total_harga=$request->total_belanja;
         $transaction->jumlah_barang=$request->jumlah_barang;
+        $transaction->nama_barang=$request->nama_barang;
+        $transaction->nama_user=Auth::user()->name;
         $transaction->save();
 
         Cart::remove($request->id_keranjang);
@@ -97,5 +107,13 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function userTransaction()
+    {
+        $userId=Auth::id();
+        $transactions=Transaction::where('user_id',$userId)->get();
+        return view('transactions_user')->with('transaction',$transactions);
+
     }
 }

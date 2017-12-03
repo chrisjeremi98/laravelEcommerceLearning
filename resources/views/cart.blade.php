@@ -2,6 +2,12 @@
 
 @extends('layouts.app')
 
+@section('extra-css')
+
+    <link href="{{asset('css/cart.css')}}" rel="stylesheet">
+
+@endsection
+
 @section('content')
 
     <div class="container">
@@ -65,7 +71,7 @@
                             </form>
 
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#product_view{{$item->id}}"><i class="fa fa-search"></i> Bayar
+                                    data-target="#product_view{{$item->id}}"><i class="fa fa-search"></i>Detail
                             </button>
                         </td>
                     </tr>
@@ -86,7 +92,7 @@
                                             <h4>{{$item->name}}</h4>
 
                                             <p>{{$item->options->description}}</p>
-                                            <div class="row">
+                                            <div class="row" id="jumlah">
                                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                                     <select class="quantity" data-id="{{$item->rowId}}">
                                                         <option {{ $item->qty == 1 ? 'selected' : '' }}>1</option>
@@ -100,11 +106,12 @@
 
                                                 <!-- end col -->
                                             </div>
-                                            <div class="space-ten">Rp{{$item->subtotal}}</div>
+                                            <div class="space-ten" id="subtotal" >Rp{{$item->subtotal}}</div>
                                             <div>
                                                 <form action="{{ url('/transaction') }}" method="POST" class="side-by-side">
                                                     {!! csrf_field() !!}
-                                                    <input type="hidden" name="r" value="{{$item->id}}">
+                                                    <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                    <input type="hidden" name="nama_barang" value="{{$item->name}}">
                                                     <input type="hidden" name="total_belanja" value="{{$item->subtotal}}">
                                                     <input type="hidden" name="jumlah_barang" value="{{$item->qty}}">
                                                     <input type="hidden" name="id_keranjang" value="{{$item->rowId}}">
